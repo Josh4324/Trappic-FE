@@ -1,3 +1,4 @@
+/* eslint-disable import/no-webpack-loader-syntax */
 import "./app.css";
 import Map, {
   Marker,
@@ -15,8 +16,12 @@ import GeocoderControl from "./components/Geocoder";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import { v4 as uuidv4 } from "uuid";
+import mapboxgl from "mapbox-gl";
 
 function App() {
+  // eslint-disable-next-line import/no-webpack-loader-syntax
+  mapboxgl.workerClass =
+    require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
   const myStorage = window.localStorage;
   const [currentUsername, setCurrentUsername] = useState(
     myStorage.getItem("user")
